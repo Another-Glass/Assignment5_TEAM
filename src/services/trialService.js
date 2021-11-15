@@ -6,8 +6,8 @@ const {
 } = require('../utils/errors/commonError');
 const logger = require('../utils/logger');
 const trial = require('../models/trial');
-const { sequelize } = require('../models');
-const Op = sequelize.Op;
+const sequelize = require('sequelize');
+const { Op } = require('sequelize');
 
 /**
  * 상세조회
@@ -48,24 +48,34 @@ exports.readTrialList = async data => {
  * 검색
  * data.name
  * data.type
- * data.department
  * data.page
  * data.limit
+ * data.deparment
  */
 exports.searchTrials = async data => {
   try {
+    let query = {
+      name: {
+        [Op.like]: `%${data.name}%`,
+      },
+      type: {
+        [Op.like]: `%${data.type}%`,
+      },
+      department: {
+        [Op.like]: `%${data.department}%`,
+      },
+    };
+
+    for (let value in query) {
+      if (!data[value]) delete query[value];
+    }
+
     const searchTrials = await models.trial.findAll({
       where: {
-        name: {
-          [Op.like]: `%${data.name}%`,
-        },
-        type: {
-          [Op.like]: `%${data.type}%`,
-        },
-        department: {
-          [Op.like]: `%${data.department}%`,
-        },
+        [Op.and]: query,
       },
+      offset: data.page,
+      limit: data.limit
     });
     return searchTrials;
   } catch (err) {
