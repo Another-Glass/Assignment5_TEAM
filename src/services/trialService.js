@@ -6,22 +6,22 @@ const {
 } = require('../utils/errors/commonError');
 const logger = require('../utils/logger');
 const trial = require('../models/trial');
-const { sequelize } = require('../models');
-const Op = sequelize.Op;
+const sequelize = require('sequelize');
+const { Op } = require('sequelize');
 
 /**
  * 상세조회
  * data.trialId
  */
-exports.readTrial = async (trialId)=>{
-  try{
+exports.readTrial = async trialId => {
+  try {
     const trial = await models.trial.findOne({
       where: {
-        id: trialId
-      }
-    })
-    return trial
-  }catch(err){
+        id: trialId,
+      },
+    });
+    return trial;
+  } catch (err) {
     throw err;
   }
 };
@@ -31,15 +31,15 @@ exports.readTrial = async (trialId)=>{
  * data.page
  * data.limit
  */
-exports.readTrialList = async (data)=>{
-  try{
+exports.readTrialList = async data => {
+  try {
     const trials = await models.trial.findAll({
       offset: data.page * data.limit,
       limit: data.limit,
-      order: [['createdAt', 'DESC']]
-    })
-    return trials
-  }catch(err){
+      order: [['createdAt', 'DESC']],
+    });
+    return trials;
+  } catch (err) {
     throw err;
   }
 };
@@ -48,27 +48,34 @@ exports.readTrialList = async (data)=>{
  * 검색
  * data.name
  * data.type
- * data.department
  * data.page
  * data.limit
  */
-exports.searchTrials = async (data)=>{
-  try{
+exports.searchTrials = async data => {
+  try {
+    let query = {
+      name: {
+        [Op.like]: `%${data.name}%`,
+      },
+      type: {
+        [Op.like]: `%${data.type}%`,
+      },
+      department: {
+        [Op.like]: `%${data.department}%`,
+      },
+    };
+
+    for (let value in query) {
+      if (!data[value]) delete query[value];
+    }
+
     const searchTrials = await models.trial.findAll({
       where: {
-        name: {
-          [Op.like]: `%${data.name}%`
-        },
-        type: {
-          [Op.like]: `%${data.type}%`
-        },
-        department: {
-          [Op.like]: `%${data.department}%`
-        }
-      }
-    })
+        [Op.and]: query,
+      },
+    });
     return searchTrials;
-  }catch(err){
+  } catch (err) {
     throw err;
   }
 };
@@ -111,9 +118,9 @@ exports.createOrUpdateTrials = async data => {
       //존재유무 확인
       const alreadyTrial = await models.trial.findByPk(trial['과제번호']);
 
-      if (!alreadyTrial){
+      if (!alreadyTrial) {
         newTrials.push(dbRawData);
-      } 
+      }
       //해쉬가 다르면 업데이트
       else if (alreadyTrial.hash !== trial.hash) {
         await models.trial.update(dbRawData, {
