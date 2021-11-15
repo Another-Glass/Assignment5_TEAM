@@ -111,7 +111,9 @@ exports.createOrUpdateTrials = async data => {
       //존재유무 확인
       const alreadyTrial = await models.trial.findByPk(trial['과제번호']);
 
-      if (!alreadyTrial) newTrials.push(dbRawData);
+      if (!alreadyTrial){
+        newTrials.push(dbRawData);
+      } 
       //해쉬가 다르면 업데이트
       else if (alreadyTrial.hash !== trial.hash) {
         await models.trial.update(dbRawData, {
@@ -122,6 +124,7 @@ exports.createOrUpdateTrials = async data => {
       }
     }
 
+    logger.log('db updated');
     await models.trial.bulkCreate(newTrials);
     return;
   } catch (err) {
