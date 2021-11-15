@@ -145,10 +145,10 @@
 
 <br>
 
-### [ 유닛 테스트 ]
+### [ 유닛 테스트 및 통합테스트 ]
 
-- 명시한 api들의 경우 Postman Test기능을 이용한 유닛테스트를 구현했습니다.
-- 임상정보 수집 BatchTask의 경우 스케쥴을 이용하기 때문에 jest를 이용하여 테스트를 구현했습니다.
+- jest를 이용하여 조회, 검색 및 BatchTask 유닛 테스트를 구현했습니다.
+- Postman Test기능을 이용한 통합테스트를 구현했습니다.
 
 <br>
 <br>
@@ -167,7 +167,7 @@
 - 레포지토리를 clone 받거나, 압축을 해제한 후 npm install을 통해 환경 셋팅을 진행합니다.
 - npm start를 통해 서버를 구동합니다.
 - src 폴더에 .env 파일을 설정해서, 환경변수를 설정합니다.
-- npm start로 서버를 구동시키고, npm test를 입력하면 단위 테스트가 가능합니다.
+- npm start로 서버를 구동시키고, npm test를 입력하면 **유닛 테스트**가 가능합니다.
 - [.env설정 노션 링크](https://www.notion.so/pre-onboarding15/2835fc7401c74e7fa9b352dc0fe52047)
 
   - <details><summary><b>링크 접속불가 시 .env 파일 설정 방법</b></summary>
@@ -194,13 +194,10 @@
 - [![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/18068137/UVC8C5cm) 을 클릭하여 웹브라우저 혹은 Postman 클라이언트에 콜렉션이 로드되면
 
   1.  Variables 탭에서 서버 Host와 Port를 지정합니다. (기본값이 지정되어 있습니다.)
-  2.  그후 우측 상단의 Run 버튼을 눌러 RUN ORDER 화면에 진입한 뒤 Run \[Collection Name\]을 클릭하면, 이상적인 상황에서의 테스트가 진행됩니다.
+  2.  우측 상단의 Run 버튼을 눌러 RUN ORDER 화면에 진입한 뒤 Run \[Collection Name\]을 클릭하면, Postman Test 스크립트를 이용한 **통합 테스트**가 진행됩니다.
   3.  좌측의 Workspace 화면에서 해당 콜렉션과 그 요청에는 여러 이상적이지 않은 상황의 테스트에 대한 예시가 있습니다.
 
   </br>
-
-- 임상정보 수집 BatchTask의 경우 스케쥴을 이용하기 때문에 jest를 이용한 테스트를 구현했습니다.
-  - src 폴더 내에서 **npm run test**를 입력하여 확인 가능합니다.
 
 </br>
 </br>
