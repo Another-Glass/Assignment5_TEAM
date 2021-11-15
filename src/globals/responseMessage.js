@@ -12,5 +12,7 @@ module.exports = {
   ENTITY_NOT_EXIST: "DB에 없는 데이터 관련 요청입니다.",
   NO_PAGE_ERROR: "해당 라우트는 존재하지 않습니다.",
 
-  
+  // trial
+  READ_SUCCESS: '과제 읽기 성공',
+  LIST_SUCCESS: '과제 목록'
 };
