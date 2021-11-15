@@ -14,5 +14,6 @@ module.exports = {
 
   // trial
   READ_SUCCESS: '과제 읽기 성공',
-  LIST_SUCCESS: '과제 목록'
+  LIST_SUCCESS: '과제 목록',
+  SEARCH_SUCCESS: '검색 성공'
 };

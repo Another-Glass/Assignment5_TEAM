@@ -31,8 +31,8 @@ module.exports.getTrials = async (req, res, next) => {
   try {
     const { page = 1, limit = 10 } = req.query;
     const data = {
-      page,
-      limit
+      page: Number(page) - 1,
+      limit: Number(limit)
     };
     const trials = await trialService.readTrialList(data);
     
@@ -47,12 +47,24 @@ module.exports.getTrials = async (req, res, next) => {
 // 검색 API
 module.exports.searchTrials = async (req, res, next) => {
   try {
-    const { name, type, department, page, limit } = req.query;
+    const { name, type, department, page = 1, limit = 10 } = req.query;
 
-    if (name === undefined || type === undefined || department === undefined
-      || page === undefined || limit === undefined)
+    if (name === undefined && type === undefined && department === undefined)
       throw new ValidationError();
 
+    const data = {
+      name,
+      type,
+      department,
+      page: Number(page) - 1,
+      limit: Number(limit)
+    }
+
+    const trials = await trialService.searchTrials(data);
+
+    return res
+      .status(statusCode.OK)
+      .send(resFormatter.success(responseMessage.SEARCH_SUCCESS, trials));
   } catch (err) {
     next(err);
   }
