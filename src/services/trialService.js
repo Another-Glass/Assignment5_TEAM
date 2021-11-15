@@ -50,6 +50,7 @@ exports.readTrialList = async data => {
  * data.type
  * data.page
  * data.limit
+ * data.deparment
  */
 exports.searchTrials = async data => {
   try {
