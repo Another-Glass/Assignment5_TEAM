@@ -30,6 +30,10 @@ module.exports.getTrialDetail = async (req, res, next) => {
 module.exports.getTrials = async (req, res, next) => {
   try {
     const { page = 1, limit = 10 } = req.query;
+
+    if (page <= 0)
+      throw new ValidationError();
+
     const data = {
       page: Number(page) - 1,
       limit: Number(limit)
@@ -49,7 +53,7 @@ module.exports.searchTrials = async (req, res, next) => {
   try {
     const { name, type, department, page = 1, limit = 10 } = req.query;
 
-    if (name === undefined && type === undefined && department === undefined)
+    if (name === undefined && type === undefined && department === undefined && page <= 0)
       throw new ValidationError();
 
     const data = {
