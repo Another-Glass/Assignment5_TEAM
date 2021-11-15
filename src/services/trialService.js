@@ -34,7 +34,7 @@ exports.readTrial = async (trialId)=>{
 exports.readTrialList = async (data)=>{
   try{
     const trials = await models.trial.findAll({
-      offset: data.page,
+      offset: data.page * data.limit,
       limit: data.limit,
       order: [['createdAt', 'DESC']]
     })
