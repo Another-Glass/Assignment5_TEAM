@@ -74,6 +74,8 @@ exports.searchTrials = async data => {
       where: {
         [Op.and]: query,
       },
+      offset: data.page,
+      limit: data.limit
     });
     return searchTrials;
   } catch (err) {
