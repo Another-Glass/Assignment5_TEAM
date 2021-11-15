@@ -4,11 +4,12 @@ const logger = require('../utils/logger');
 const fs = require('fs');
 const path = require('path');
 const basename = path.basename(__filename);
+// const Op = Sequelize.Op;
 
-const IS_SQLLITE = configs.db.isSqlite;
-
+const IS_SQLLITE = false;
 
 let sequelize;
+
 if (IS_SQLLITE) {
   sequelize = new Sequelize({
     dialect: 'sqlite',
