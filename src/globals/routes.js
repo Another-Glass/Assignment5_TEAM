@@ -4,8 +4,7 @@
 const ROOT = '/';
 
 const TRIAL = '/trials';
-const TRIAL_DETAIL = '/:trialId';
-
+const TRIAL_DETAIL = '/detail/:trialId';
 const SEARCH = '/search';
 
 

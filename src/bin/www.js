@@ -23,7 +23,7 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 //api 크롤링작업 스케쥴 시작
-openApiJobs();
+openApiJobs.startOpenApiBatch();
 
 
 //아래는 함수들

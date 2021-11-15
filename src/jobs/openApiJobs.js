@@ -2,6 +2,9 @@ const cron = require('node-cron');
 const axios = require('axios');
 const md5 = require('md5');
 const secretKey = require('../configs').secretKey.openApiSecretKey;
+
+const trialService = require('../services/trialService')
+
 const logger = require('../utils/logger.js');
 const logtag = 'src:batch';
 const { createOrUpdateTrials } = require('../services/trialService.js');
@@ -27,12 +30,14 @@ async function getOpenApiData() {
 
       const res = await axios.get(url);
 
+      // 더 이상 받아올게 없으면 종료
       totalCount += res.data.currentCount;
       if (res.data.currentCount <= 0) {
         logger.logWithTag('total : ' + totalCount, logtag);
         break;
       }
 
+      // 임상정보 오브젝트마다 해쉬값을 만들어서 넣어줌
       let trials = res.data.data;
       trials.map(trial => {
         let hash = md5(trial);
@@ -41,6 +46,7 @@ async function getOpenApiData() {
       });
 
       await createOrUpdateTrials(trials);
+
       page++;
       logger.logWithTag(trials[0], logtag);
     } catch (err) {
@@ -50,4 +56,6 @@ async function getOpenApiData() {
   }
 }
 
-module.exports = startOpenApiBatch;
+module.exports.startOpenApiBatch = startOpenApiBatch;
+
+module.exports.getOpenApiData = getOpenApiData;

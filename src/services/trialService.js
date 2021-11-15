@@ -5,15 +5,23 @@ const {
   ValidationError,
 } = require('../utils/errors/commonError');
 const logger = require('../utils/logger');
-const logTag = 'src:transaction';
+const trial = require('../models/trial');
+const { sequelize } = require('../models');
+const Op = sequelize.Op;
 
 /**
  * 상세조회
  * data.trialId
  */
-exports.readTrial = async data => {
-  try {
-  } catch (err) {
+exports.readTrial = async (trialId)=>{
+  try{
+    const trial = await models.trial.findOne({
+      where: {
+        id: trialId
+      }
+    })
+    return trial
+  }catch(err){
     throw err;
   }
 };
@@ -23,9 +31,15 @@ exports.readTrial = async data => {
  * data.page
  * data.limit
  */
-exports.readTrialList = async data => {
-  try {
-  } catch (err) {
+exports.readTrialList = async (data)=>{
+  try{
+    const trials = await models.trial.findAll({
+      offset: data.page,
+      limit: data.limit,
+      order: [['createdAt', 'DESC']]
+    })
+    return trials
+  }catch(err){
     throw err;
   }
 };
@@ -38,9 +52,23 @@ exports.readTrialList = async data => {
  * data.page
  * data.limit
  */
-exports.searchTrials = async data => {
-  try {
-  } catch (err) {
+exports.searchTrials = async (data)=>{
+  try{
+    const searchTrials = await models.trial.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${data.name}%`
+        },
+        type: {
+          [Op.like]: `%${data.type}%`
+        },
+        department: {
+          [Op.like]: `%${data.department}%`
+        }
+      }
+    })
+    return searchTrials;
+  }catch(err){
     throw err;
   }
 };
