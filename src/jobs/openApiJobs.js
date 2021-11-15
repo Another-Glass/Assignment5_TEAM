@@ -10,7 +10,8 @@ const logtag = 'src:batch';
 const { createOrUpdateTrials } = require('../services/trialService.js');
 
 function startOpenApiBatch() {
-  cron.schedule('*/10 * * * * *', () => {
+  getOpenApiData();
+  cron.schedule('*/100 * * * * *', () => {
     getOpenApiData();
   });
 }
@@ -48,7 +49,7 @@ async function getOpenApiData() {
       await createOrUpdateTrials(trials);
 
       page++;
-      logger.logWithTag(trials[0], logtag);
+      //logger.logWithTag(trials[0], logtag);
     } catch (err) {
       logger.logWithTag(err, logtag);
       break;

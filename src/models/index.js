@@ -6,15 +6,13 @@ const path = require('path');
 const basename = path.basename(__filename);
 // const Op = Sequelize.Op;
 
-const IS_SQLLITE = false;
-
 let sequelize;
 
-if (IS_SQLLITE) {
+if (JSON.parse(configs.db.isSqlite)) {
   sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: '../database.db',
-    logging: true,
+    logging: false,
   });
 } else {
   sequelize = new Sequelize(
@@ -25,7 +23,7 @@ if (IS_SQLLITE) {
       host: configs.db.dbHOSTNAME,
       port: configs.db.dbPORT,
       dialect: 'mysql',
-      logging: true,
+      logging: false,
     },
   );
 }
