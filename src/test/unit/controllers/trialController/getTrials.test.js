@@ -18,7 +18,7 @@ beforeEach(() => {
   next = jest.fn();
 })
 
-describe('postTrials 단위 테스트', () => {
+describe('getTrials 단위 테스트', () => {
   beforeEach(() => {
     req.query = trialsData;
   })
