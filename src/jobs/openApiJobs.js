@@ -11,7 +11,9 @@ const { createOrUpdateTrials } = require('../services/trialService.js');
 
 function startOpenApiBatch() {
   getOpenApiData();
-  cron.schedule('*/100 * * * * *', () => {
+
+  //테스트를 위해 1시간에 한번씩
+  cron.schedule('* */1 * * *', () => {
     getOpenApiData();
   });
 }
