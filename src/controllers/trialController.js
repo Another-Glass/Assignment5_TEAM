@@ -2,6 +2,7 @@ const { statusCode, responseMessage } = require('../globals');
 const { resFormatter } = require('../utils');
 const trialService = require('../services/trialService.js');
 const logger = require('../utils/logger');
+const day = require('../utils/day');
 const {
   ValidationError,
   EntityNotExistError,
@@ -30,13 +31,16 @@ module.exports.getTrialDetail = async (req, res, next) => {
 module.exports.getTrials = async (req, res, next) => {
   try {
     const { page = 1, limit = 10 } = req.query;
-
+    
     if (page <= 0)
       throw new ValidationError();
-
+    
+    const beforeOneWeek = day.beforeOneWeek();
+    
     const data = {
       page: Number(page) - 1,
       limit: Number(limit),
+      beforeOneWeek
     };
     const trials = await trialService.readTrialList(data);
 

@@ -37,6 +37,9 @@ exports.readTrialList = async data => {
       offset: data.page * data.limit,
       limit: data.limit,
       order: [['createdAt', 'DESC']],
+      where: {
+          updatedAt: {[Op.gte]: data.beforeOneWeek}
+      }
     });
     return trials;
   } catch (err) {
