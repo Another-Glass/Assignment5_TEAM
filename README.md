@@ -44,7 +44,7 @@
 |                      <img src="https://avatars.githubusercontent.com/u/59385491?v=4" height=200 width=200>                      |              <img src="https://avatars.githubusercontent.com/u/38933716?v=4" height=200 width=200>              |             <img src="https://avatars.githubusercontent.com/u/67402180?v=4" height=200 width=200>              |
 | **blog**: [Plus Ultra](https://overcome-the-limits.tistory.com/) </br> **github**: [epitone](https://github.com/epitoneproject) | **blog**: [sudocorp](https://sudocorp.tistory.com/) </br> **github**: [SibaDoge1](https://github.com/SibaDoge1) | **blog**: [raejun92.log](https://velog.io/@raejun92) </br> **github**: [raejun92](https://github.com/raejun92) |
 |                                 ![sprint5](https://img.shields.io/badge/wanted-sprint5-purple)                                  |                         ![sprint5](https://img.shields.io/badge/wanted-sprint5-purple)                          |                         ![sprint5](https://img.shields.io/badge/wanted-sprint5-purple)                         |
-|                                                     상세, 리스트, 검색 API                                                      |                                         batch task, 유닛테스트 / DevOps                                         |                                             상세, 리스트, 검색 API                                             |
+|                                                     상세, 리스트, 검색 API, 유닛테스트                                                      |                                         batch task, 유닛테스트 / DevOps                                         |                                             상세, 리스트, 검색 API                                             |
 |                                                        [프로젝트 회고](https://overcome-the-limits.tistory.com/entry/%ED%9A%8C%EA%B3%A0-%EC%9B%90%ED%8B%B0%EB%93%9C-%ED%94%84%EB%A6%AC%EC%98%A8%EB%B3%B4%EB%94%A9-%EB%B0%B1%EC%97%94%EB%93%9C-%EC%BD%94%EC%8A%A4-5%EC%B0%A8-%EA%B3%BC%EC%A0%9C)                                                        |                                 [프로젝트 회고](https://sudocorp.tistory.com/6)                                 |                                               [프로젝트 회고](https://velog.io/@raejun92/Assignment5-%ED%9C%B4%EB%A8%BC%EC%8A%A4%EC%BC%80%EC%9D%B4%ED%94%84)                                                |
 
 <br>
@@ -129,6 +129,7 @@
 - node-cron을 이용하여 주기적으로 openApi로부터 데이터를 받아옵니다.
 - 기존 데이터에서 업데이트 될 경우를 고려하여, 데이터의 해시값을 설정하고 비교하여 변경사항이 있는지 파악했습니다.
 - DB Upsert 기능을 쓰려했으나 updatedAt 애트리뷰트가 무조건 변경되기때문에 사용을 하지 않았습니다.
+
 <br>
 
 ### [ 임상정보 조회, 검색 API ]
@@ -222,7 +223,7 @@
 </br>
 
 <div align=center>
-<img src="https://user-images.githubusercontent.com/68373235/141799640-24e33468-b3a7-4226-9598-a04a3313976d.JPG" height=850>
+<img src="https://user-images.githubusercontent.com/59385491/141960128-f8ff3b55-56a2-48b9-823a-30110485661f.png" height=850>
 </div>
 
 </br>
