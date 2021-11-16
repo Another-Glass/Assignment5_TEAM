@@ -41,7 +41,7 @@ async function getOpenApiData() {
       // 임상정보 오브젝트마다 해쉬값을 만들어서 넣어줌
       let trials = res.data.data;
       trials.map(trial => {
-        let hash = md5(trial);
+        let hash = md5(JSON.stringify(trial));
         trial.hash = hash;
         return trial;
       });
