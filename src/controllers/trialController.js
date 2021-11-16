@@ -16,7 +16,7 @@ module.exports.getTrialDetail = async (req, res, next) => {
     if (trialId === undefined) throw new ValidationError();
 
     const trial = await trialService.readTrial(trialId);
-
+    
     if (!trial) throw new EntityNotExistError();
 
     return res
